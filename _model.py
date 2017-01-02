@@ -3,8 +3,9 @@
 from typing import Iterable as _Iterable
 from datetime import datetime as _datetime
 from decimal import Decimal as _Decimal
-from pytsite import odm as _odm, odm_ui as _odm_ui, currency as _currency, auth as _auth, widget as _widget, \
-    errors as _errors, auth_storage_odm as _auth_storage_odm
+from pytsite import odm as _odm, odm_ui as _odm_ui, auth as _auth, widget as _widget, errors as _errors, \
+    auth_storage_odm as _auth_storage_odm
+from plugins import currency as _currency
 from . import _error, _widget as _wallet_widget
 
 __author__ = 'Alexander Shepetko'

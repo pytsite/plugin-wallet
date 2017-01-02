@@ -2,7 +2,8 @@
 """
 from decimal import Decimal as _Decimal
 from frozendict import frozendict as _frozendict
-from pytsite import widget as _w, odm as _odm, auth as _auth, currency as _currency, html as _html, browser as _browser
+from pytsite import widget as _w, odm as _odm, auth as _auth, html as _html, browser as _browser
+from plugins import currency as _currency
 
 __author__ = 'Alexander Shepetko'
 __email__ = 'a@shepetko.com'

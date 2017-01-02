@@ -12,6 +12,8 @@
   },
   "requires": {
     "packages": [],
-    "plugins": []
+    "plugins": [
+      "currency"
+    ]
   }
 }
