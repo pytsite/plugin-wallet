@@ -1,0 +1,17 @@
+{
+  "description": {
+    "en": "Wallet",
+    "ru": "Wallet",
+    "uk": "Wallet"
+  },
+  "url": "https://github.com/pytsite/plugin-wallet",
+  "author": {
+    "name": "Alexander Shepetko",
+    "email": "a@shepetko.com",
+    "url": "https://shepetko.com"
+  },
+  "requires": {
+    "packages": [],
+    "plugins": []
+  }
+}
