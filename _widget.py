@@ -52,8 +52,8 @@ class MoneyInput(_w.Abstract):
 
         self._assets.extend(_browser.get_assets('inputmask'))
         self._assets.extend([
-            'pytsite.wallet@css/widget-money-input.css',
-            'pytsite.wallet@js/widget-money-input.js',
+            'wallet@css/widget-money-input.css',
+            'wallet@js/widget-money-input.js',
         ])
 
     def set_val(self, value: dict, **kwargs):

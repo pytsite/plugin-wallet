@@ -13,22 +13,27 @@ __license__ = 'MIT'
 
 
 def __init():
-    from pytsite import odm, admin, router, events, assetman, permissions
+    from pytsite import lang, odm, admin, router, events, assetman, permissions
     from . import _eh
 
+    # Resources
+    lang.register_package(__name__)  # For ODM UI
+    lang.register_package(__name__, alias='wallet')
+    assetman.register_package(__name__, alias='wallet')
+
     # Permission group
-    permissions.define_group('wallet', 'pytsite.wallet@wallet')
+    permissions.define_group('wallet', 'wallet@wallet')
 
     # ODM models
     odm.register_model('wallet_account', model.Account)
     odm.register_model('wallet_transaction', model.Transaction)
 
     # Admin sidebar entries
-    admin.sidebar.add_section('wallet', 'pytsite.wallet@wallet', 250)
-    admin.sidebar.add_menu('wallet', 'accounts', 'pytsite.wallet@accounts',
+    admin.sidebar.add_section('wallet', 'wallet@wallet', 250)
+    admin.sidebar.add_menu('wallet', 'accounts', 'wallet@accounts',
                            router.ep_path('pytsite.odm_ui@browse', {'model': 'wallet_account'}),
                            'fa fa-credit-card', weight=10, permissions='pytsite.odm_perm.view.wallet_account')
-    admin.sidebar.add_menu('wallet', 'transactions', 'pytsite.wallet@transactions',
+    admin.sidebar.add_menu('wallet', 'transactions', 'wallet@transactions',
                            router.ep_path('pytsite.odm_ui@browse', {'model': 'wallet_transaction'}),
                            'fa fa-exchange', weight=20, permissions='pytsite.odm_perm.view.wallet_transaction')
 
@@ -37,9 +42,8 @@ def __init():
 
     # Admin routes
     abp = admin.base_path()
-    router.add_rule(abp + '/odm_ui/wallet_transaction/cancel', 'pytsite.wallet@transactions_cancel')
-    router.add_rule(abp + '/odm_ui/wallet_transaction/cancel/submit', 'pytsite.wallet@transactions_cancel_submit')
+    router.add_rule(abp + '/odm_ui/wallet_transaction/cancel', 'plugins.wallet@transactions_cancel')
+    router.add_rule(abp + '/odm_ui/wallet_transaction/cancel/submit', 'plugins.wallet@transactions_cancel_submit')
 
-    assetman.register_package(__name__)
 
 __init()

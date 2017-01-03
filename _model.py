@@ -92,11 +92,11 @@ class Account(_odm_ui.model.UIEntity):
         :type browser: pytsite.odm_ui._browser.Browser
         """
         browser.data_fields = [
-            ('_id', 'pytsite.wallet@id'),
-            ('title', 'pytsite.wallet@title'),
-            ('currency', 'pytsite.wallet@currency'),
-            ('balance', 'pytsite.wallet@balance'),
-            ('owner', 'pytsite.wallet@owner'),
+            ('_id', 'wallet@id'),
+            ('title', 'wallet@title'),
+            ('currency', 'wallet@currency'),
+            ('balance', 'wallet@balance'),
+            ('owner', 'wallet@owner'),
         ]
 
     def odm_ui_browser_row(self) -> tuple:
@@ -248,18 +248,18 @@ class Transaction(_odm_ui.model.UIEntity):
         :type browser: pytsite.odm_ui._browser.Browser
         """
         browser.data_fields = [
-            ('time', 'pytsite.wallet@time'),
-            ('description', 'pytsite.wallet@description'),
-            ('source', 'pytsite.wallet@source'),
-            ('destination', 'pytsite.wallet@destination'),
-            ('amount', 'pytsite.wallet@amount'),
-            ('state', 'pytsite.wallet@state'),
+            ('time', 'wallet@time'),
+            ('description', 'wallet@description'),
+            ('source', 'wallet@source'),
+            ('destination', 'wallet@destination'),
+            ('amount', 'wallet@amount'),
+            ('state', 'wallet@state'),
         ]
         browser.default_sort_field = 'time'
 
     @classmethod
     def odm_ui_browser_mass_action_buttons(cls) -> tuple:
-        return {'ep': 'pytsite.wallet@transactions_cancel',
+        return {'ep': 'plugins.wallet@transactions_cancel',
                 'icon': 'undo',
                 'color': 'danger',
                 'title': Transaction.t('odm_ui_form_title_delete_wallet_transaction')},
@@ -288,7 +288,7 @@ class Transaction(_odm_ui.model.UIEntity):
     def odm_ui_browser_entity_actions(self) -> tuple:
         if self.state == 'committed':
             return {'icon': 'undo',
-                    'ep': 'pytsite.wallet@transactions_cancel',
+                    'ep': 'plugins.wallet@transactions_cancel',
                     'color': 'danger',
                     'title': self.t('cancel')},
 
