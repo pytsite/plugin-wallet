@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 0.1.3 (2017-01-08)
+Translations updated.
+
 ### 0.1.2 (2017-01-03)
 Fixed issues related to the latest PytSite version compatibility.
 

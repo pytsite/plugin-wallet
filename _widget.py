@@ -18,12 +18,12 @@ class AccountSelect(_w.select.Select):
         u = _auth.get_current_user()
         items = []
 
-        if u.has_permission('pytsite.odm_perm.view.wallet_account') or \
-                u.has_permission('pytsite.odm_perm.view_own.wallet_account'):
+        if u.has_permission('pytsite.odm_auth.view.wallet_account') or \
+                u.has_permission('pytsite.odm_auth.view_own.wallet_account'):
             f = _odm.find('wallet_account').sort([('title', _odm.I_ASC)])
 
             # User can only view its own accounts
-            if not u.has_permission('pytsite.odm_perm.view.wallet_account'):
+            if not u.has_permission('pytsite.odm_auth.view.wallet_account'):
                 f.eq('owner', u.uid)
 
             for acc in f.get():

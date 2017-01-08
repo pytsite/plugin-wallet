@@ -17,7 +17,6 @@ def __init():
     from . import _eh
 
     # Resources
-    lang.register_package(__name__)  # For ODM UI
     lang.register_package(__name__, alias='wallet')
     assetman.register_package(__name__, alias='wallet')
 
@@ -32,10 +31,10 @@ def __init():
     admin.sidebar.add_section('wallet', 'wallet@wallet', 250)
     admin.sidebar.add_menu('wallet', 'accounts', 'wallet@accounts',
                            router.ep_path('pytsite.odm_ui@browse', {'model': 'wallet_account'}),
-                           'fa fa-credit-card', weight=10, permissions='pytsite.odm_perm.view.wallet_account')
+                           'fa fa-credit-card', weight=10, permissions='pytsite.odm_auth.view.wallet_account')
     admin.sidebar.add_menu('wallet', 'transactions', 'wallet@transactions',
                            router.ep_path('pytsite.odm_ui@browse', {'model': 'wallet_transaction'}),
-                           'fa fa-exchange', weight=20, permissions='pytsite.odm_perm.view.wallet_transaction')
+                           'fa fa-exchange', weight=20, permissions='pytsite.odm_auth.view.wallet_transaction')
 
     # Cron event dispatcher
     events.listen('pytsite.cron.1min', _eh.cron_1_min)
