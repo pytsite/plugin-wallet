@@ -11,11 +11,11 @@ __license__ = 'MIT'
 class TransactionsCancel(_odm_ui.forms.MassAction):
     """Transactions Cancel Form.
     """
-    def _setup_form(self, **kwargs):
+    def _on_setup_form(self, **kwargs):
         """Hook.
         :param **kwargs:
         """
-        super()._setup_form()
+        super()._on_setup_form()
 
         # Check permissions
         if not _odm_auth.check_permissions('cancel', self._model, self._eids):
@@ -27,10 +27,10 @@ class TransactionsCancel(_odm_ui.forms.MassAction):
         # Page title
         _metatag.t_set('title', _lang.t('wallet@odm_ui_form_title_cancel_' + self._model))
 
-    def _setup_widgets(self):
+    def _on_setup_widgets(self):
         """Hook.
         """
-        super()._setup_widgets()
+        super()._on_setup_widgets()
 
         # Change submit button color
         self.get_widget('action-submit').color = 'danger'
