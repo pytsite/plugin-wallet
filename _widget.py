@@ -105,7 +105,7 @@ class MoneyInput(_w.Abstract):
 
         return self._value
 
-    def get_html_em(self, **kwargs) -> _html.Element:
+    def _get_element(self, **kwargs) -> _html.Element:
         """Get HTML element of the widget.
         """
         # Container
@@ -140,4 +140,4 @@ class MoneyInput(_w.Abstract):
             r.append(_html.Span(_currency.get_symbol(self._value['currency']), cls='input-group-addon'))
             r.append(_html.Input(type='hidden', name=self._uid + '[currency]', value=self._value['currency']))
 
-        return self._group_wrap(r)
+        return r
