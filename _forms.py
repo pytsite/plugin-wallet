@@ -18,7 +18,7 @@ class TransactionsCancel(_odm_ui.forms.MassAction):
         super()._on_setup_form()
 
         # Check permissions
-        if not _odm_auth.check_permissions('cancel', self._model, self._eids):
+        if not _odm_auth.check_permission('cancel', self._model, self._eids):
             raise _http.error.Unauthorized()
 
         # Action URL

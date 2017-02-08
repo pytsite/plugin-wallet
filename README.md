@@ -4,8 +4,12 @@
 ## Changelog
 
 
+### 0.1.6 (2017-02-08)
+Support for latest PytSite `odm_auth`'s changes.
+
+
 ### 0.1.5 (2017-01-21)
-Support latest PytSite `widget`'s changes.
+Support for latest PytSite `widget`'s changes.
 
 
 ### 0.1.4 (2017-01-12)
