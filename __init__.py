@@ -41,8 +41,8 @@ def __init():
 
     # Admin routes
     abp = admin.base_path()
-    router.add_rule(abp + '/odm_ui/wallet_transaction/cancel', 'plugins.wallet@transactions_cancel')
-    router.add_rule(abp + '/odm_ui/wallet_transaction/cancel/submit', 'plugins.wallet@transactions_cancel_submit')
+    router.handle(abp + '/odm_ui/wallet_transaction/cancel', 'plugins.wallet@transactions_cancel')
+    router.handle(abp + '/odm_ui/wallet_transaction/cancel/submit', 'plugins.wallet@transactions_cancel_submit')
 
 
 __init()
