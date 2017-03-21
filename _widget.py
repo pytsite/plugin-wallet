@@ -116,16 +116,16 @@ class MoneyInput(_w.Abstract):
             type='tel',
             name=self.uid + '[amount]',
             value=round(self._value['amount'], 2),
-            cls='amount form-control',
+            css='amount form-control',
         ))
 
         if self._currency_select:
             # Currency select
-            r.set_attr('cls', 'inputs-wrapper')
+            r.set_attr('css', 'inputs-wrapper')
             sel = _html.Select(
                 uid=self.uid + '[currency]',
                 name=self.uid + '[currency]',
-                cls='currency-select form-control'
+                css='currency-select form-control'
             )
 
             for code in _currency.get_all():
@@ -136,8 +136,8 @@ class MoneyInput(_w.Abstract):
             r.append(sel)
         else:
             # Currency static add-on
-            r.set_attr('cls', 'input-group')
-            r.append(_html.Span(_currency.get_symbol(self._value['currency']), cls='input-group-addon'))
+            r.set_attr('css', 'input-group')
+            r.append(_html.Span(_currency.get_symbol(self._value['currency']), css='input-group-addon'))
             r.append(_html.Input(type='hidden', name=self._uid + '[currency]', value=self._value['currency']))
 
         return r

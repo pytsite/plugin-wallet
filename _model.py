@@ -274,14 +274,14 @@ class Transaction(_odm_ui.model.UIEntity):
         if self.source.currency != self.destination.currency:
             amount += ' ({})'.format(_currency.fmt(self.destination.currency, self.amount * self.exchange_rate))
 
-        state_cls = 'primary'
+        state_css = 'primary'
         if self.state in ('pending', 'cancel', 'cancelling'):
-            state_cls = 'warning'
+            state_css = 'warning'
         if self.state == 'committed':
-            state_cls = 'success'
+            state_css = 'success'
         if self.state == 'cancelled':
-            state_cls = 'default'
-        state = '<span class="label label-{}">'.format(state_cls) + self.t('transaction_state_' + self.state) + '</div>'
+            state_css = 'default'
+        state = '<span class="label label-{}">'.format(state_css) + self.t('transaction_state_' + self.state) + '</div>'
 
         return time, self.description, source, destination, amount, state
 
