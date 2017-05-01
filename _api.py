@@ -21,7 +21,7 @@ def create_account(title: str, currency: str, owner: _auth.model.AbstractUser, b
     except _error.AccountNotExists:
         pass
 
-    acc = _odm.dispense('wallet_account')
+    acc = _odm.dispense('wallet_account')    # type: _Account
 
     acc.f_set('title', title)
     acc.f_set('currency', currency)
@@ -57,7 +57,7 @@ def create_transaction(src: _Account, dst: _Account, amount, description: str,
 
     :type amount: int | float | str | decimal.Decimal
     """
-    t = _odm.dispense('wallet_transaction')
+    t = _odm.dispense('wallet_transaction')  # type: _Transaction
     t.f_set('source', src)
     t.f_set('destination', dst)
     t.f_set('amount', amount)

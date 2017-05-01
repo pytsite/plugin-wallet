@@ -18,7 +18,11 @@ def __init():
 
     # Resources
     lang.register_package(__name__, alias='wallet')
+
     assetman.register_package(__name__, alias='wallet')
+    assetman.js_module('wallet-widget-input-money', __name__ + '@js/widget-input-money')
+    assetman.t_less(__name__ + '@**')
+    assetman.t_js(__name__ + '@**')
 
     # Permission group
     permissions.define_group('wallet', 'wallet@wallet')

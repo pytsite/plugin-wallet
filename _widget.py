@@ -2,7 +2,7 @@
 """
 from decimal import Decimal as _Decimal
 from frozendict import frozendict as _frozendict
-from pytsite import widget as _w, odm as _odm, auth as _auth, html as _html, browser as _browser
+from pytsite import widget as _w, odm as _odm, auth as _auth, html as _html
 from plugins import currency as _currency
 
 __author__ = 'Alexander Shepetko'
@@ -47,14 +47,8 @@ class MoneyInput(_w.Abstract):
             raise _currency.error.CurrencyNotDefined("Currency '{}' is not defined.".format(self._default_currency))
 
         self._currency_select = kwargs.get('currency_select', False)
-
         self._css += ' widget-wallet-money-input'
-
-        self._assets.extend(_browser.get_assets('inputmask'))
-        self._assets.extend([
-            'wallet@css/widget-money-input.css',
-            'wallet@js/widget-money-input.js',
-        ])
+        self._js_module = 'wallet-widget-input-money'
 
     def set_val(self, value: dict, **kwargs):
         """Set value of the widget.
