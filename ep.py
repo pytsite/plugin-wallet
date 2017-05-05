@@ -8,10 +8,10 @@ __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
 
 
-def transactions_cancel(args: dict, inp: dict):
+def transactions_cancel():
     browse_url = _router.ep_url('pytsite.odm_ui@browse', {'model': 'wallet_transaction'})
 
-    ids = inp.get('ids')
+    ids = _router.request().inp.get('ids')
     if not ids:
         return _http.response.Redirect(browse_url)
 
@@ -23,10 +23,10 @@ def transactions_cancel(args: dict, inp: dict):
     return _admin.render_form(frm)
 
 
-def transactions_cancel_submit(args: dict, inp: dict):
-    ids = inp.get('ids')
+def transactions_cancel_submit():
+    ids = _router.request().inp.get('ids')
     if not ids:
-        return _http.response.Redirect(inp.get('__redirect'))
+        return _http.response.Redirect(_router.request().inp.get('__redirect'))
 
     if isinstance(ids, str):
         ids = (ids,)

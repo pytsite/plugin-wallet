@@ -4,7 +4,11 @@
 ## Changelog
 
 
-### 0.2 (2017-03-21)
+### 0.2.1 (2017-05-05)
+Updated controllers' signatures.
+
+
+### 0.2 (2017-05-01)
 Support for latest PytSite asset management changes.
 
 
