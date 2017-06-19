@@ -18,11 +18,12 @@ class TransactionsCancel(_odm_ui.forms.MassAction):
         super()._on_setup_form()
 
         # Check permissions
-        if not _odm_auth.check_permission('cancel', self._model, self._eids):
-            raise _http.error.Unauthorized()
+        for eid in self._eids:
+            if not _odm_auth.check_permission('cancel', self._model, eid):
+                raise _http.error.Unauthorized()
 
         # Action URL
-        self._action = _router.ep_url('plugins.wallet@transactions_cancel_submit')
+        self._action = _router.rule_url('plugins.wallet@transactions_cancel_submit')
 
         # Page title
         _metatag.t_set('title', _lang.t('wallet@odm_ui_form_title_cancel_' + self._model))
