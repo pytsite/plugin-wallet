@@ -1,10 +1,9 @@
 """PytSite Wallet Package Models.
 """
-from typing import Iterable as _Iterable
 from datetime import datetime as _datetime
 from decimal import Decimal as _Decimal
 from pytsite import odm as _odm, odm_ui as _odm_ui, auth as _auth, widget as _widget, errors as _errors, \
-    auth_storage_odm as _auth_storage_odm
+    auth_storage_odm as _auth_storage_odm, auth_ui as _auth_ui
 from plugins import currency as _currency
 from . import _error, _widget as _wallet_widget
 
@@ -146,7 +145,7 @@ class Account(_odm_ui.model.UIEntity):
                 value=self.currency,
             ))
 
-        frm.add_widget(_auth.widget.UserSelect(
+        frm.add_widget(_auth_ui.widget.UserSelect(
             uid='owner',
             weight=30,
             label=self.t('owner'),
