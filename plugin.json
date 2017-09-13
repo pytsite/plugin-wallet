@@ -1,6 +1,6 @@
 {
-  "name": "plugins.wallet",
-  "version": "0.2.4",
+  "name": "wallet",
+  "version": "0.3",
   "description": {
     "en": "Wallet",
     "ru": "Wallet",

@@ -29,8 +29,14 @@ class Money(_odm.field.Dict):
     def is_empty(self):
         return self._value['amount'] == _Decimal('0.0')
 
+    def _on_get(self, value: dict, **kwargs) -> dict:
+        return {
+            'currency': value['currency'],
+            'amount': _Decimal(value['amount']),
+        }
+
     def _on_set(self, value: dict, **kwargs):
-        """Set value fo the field.
+        """Set value for the field.
         """
         # Convert to mutable dict if necessary
         if isinstance(value, _frozendict):
@@ -55,25 +61,17 @@ class Money(_odm.field.Dict):
             value['amount'] = str(value['amount'])
 
         # Convert amount to Decimal
-        if not isinstance(value['amount'], _Decimal):
-            value['amount'] = _Decimal(value['amount'])
+        if not isinstance(value['amount'], float):
+            value['amount'] = float(value['amount'])
 
         return value
 
-    def _on_get_jsonable(self, internal_value: dict, **kwargs):
-        internal_value.update({
-            'amount': float(internal_value['amount']),
-            'currency_symbol': _currency.get_symbol(internal_value['currency']),
-            'currency_title': _currency.get_title(internal_value['currency']),
-            'currency_short_title': _currency.get_title(internal_value['currency'], True),
+    def _on_get_jsonable(self, raw_value: dict, **kwargs):
+        raw_value.update({
+            'amount': raw_value['amount'],
+            'currency_symbol': _currency.get_symbol(raw_value['currency']),
+            'currency_title': _currency.get_title(raw_value['currency']),
+            'currency_short_title': _currency.get_title(raw_value['currency'], True),
         })
 
-        return internal_value
-
-    def _on_get_storable(self, internal_value, **kwargs):
-        """Get storable value of the feld.
-        """
-        return {
-            'currency': internal_value['currency'],
-            'amount': float(internal_value['amount'])
-        }
+        return raw_value
