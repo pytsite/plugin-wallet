@@ -29,7 +29,10 @@ def _register_resources():
 
 
 def plugin_install():
+    from plugins import assetman
+
     _register_resources()
+    assetman.build(__name__)
 
 
 def plugin_load():

@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 0.4.1 (2018-01-03)
+
+Installation code fixed.
+
+
 ### 0.4 (2018-01-03)
 
 Support for PytSite 7.3.
