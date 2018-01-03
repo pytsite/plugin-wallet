@@ -1,7 +1,7 @@
 """PytSite Wallet Forms
 """
-from pytsite import odm_ui as _odm_ui, odm_auth as _odm_auth, router as _router, metatag as _metatag, lang as _lang, \
-    http as _http
+from pytsite import router as _router, metatag as _metatag, lang as _lang, http as _http
+from plugins import odm_ui as _odm_ui, odm_auth as _odm_auth
 
 __author__ = 'Alexander Shepetko'
 __email__ = 'a@shepetko.com'

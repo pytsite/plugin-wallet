@@ -2,9 +2,9 @@
 """
 from datetime import datetime as _datetime
 from decimal import Decimal as _Decimal
-from pytsite import odm as _odm, odm_ui as _odm_ui, auth as _auth, widget as _widget, errors as _errors, \
-    auth_storage_odm as _auth_storage_odm, auth_ui as _auth_ui
-from plugins import currency as _currency
+from pytsite import errors as _errors
+from plugins import widget as _widget, auth as _auth, odm as _odm, currency as _currency, auth_ui as _auth_ui, \
+    auth_storage_odm as _auth_storage_odm, odm_ui as _odm_ui
 from . import _error, _widget as _wallet_widget
 
 __author__ = 'Alexander Shepetko'
@@ -88,7 +88,7 @@ class Account(_odm_ui.model.UIEntity):
     def odm_ui_browser_setup(cls, browser):
         """Setup ODM UI browser hook.
 
-        :type browser: pytsite.odm_ui._browser.Browser
+        :type browser: odm_ui._browser.Browser
         """
         browser.data_fields = [
             ('_id', 'wallet@id'),
@@ -112,7 +112,7 @@ class Account(_odm_ui.model.UIEntity):
     def odm_ui_m_form_setup_widgets(self, frm):
         """Modify form setup hook.
 
-        :type frm: pytsite.form.Form
+        :type frm: form.Form
         """
         frm.add_widget(_widget.input.Text(
             uid='title',
@@ -243,7 +243,7 @@ class Transaction(_odm_ui.model.UIEntity):
     def odm_ui_browser_setup(cls, browser):
         """Setup ODM UI browser hook.
 
-        :type browser: pytsite.odm_ui._browser.Browser
+        :type browser: odm_ui._browser.Browser
         """
         browser.data_fields = [
             ('time', 'wallet@time'),
@@ -295,7 +295,7 @@ class Transaction(_odm_ui.model.UIEntity):
     def odm_ui_m_form_setup_widgets(self, frm):
         """Modify form setup hook.
 
-        :type frm: pytsite.form.Form
+        :type frm: form.Form
         """
         frm.add_widget(_wallet_widget.AccountSelect(
             uid='source',

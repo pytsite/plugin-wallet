@@ -1,13 +1,12 @@
 """PytSite Money ODM Field
 """
-from frozendict import frozendict as _frozendict
-from decimal import Decimal as _Decimal
-from pytsite import odm as _odm, auth as _auth
-from plugins import currency as _currency
-
 __author__ = 'Alexander Shepetko'
 __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
+
+from frozendict import frozendict as _frozendict
+from decimal import Decimal as _Decimal
+from plugins import auth as _auth, odm as _odm, currency as _currency
 
 
 class Money(_odm.field.Dict):

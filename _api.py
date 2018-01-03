@@ -1,14 +1,14 @@
 """PytSite Wallet API Functions.
 """
-from typing import Iterable as _Iterable
-from datetime import datetime as _datetime
-from pytsite import odm as _odm, auth as _auth
-from . import _error
-from ._model import Account as _Account, Transaction as _Transaction
-
 __author__ = 'Alexander Shepetko'
 __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
+
+from typing import Iterable as _Iterable
+from datetime import datetime as _datetime
+from plugins import auth as _auth, odm as _odm
+from . import _error
+from ._model import Account as _Account, Transaction as _Transaction
 
 
 def create_account(title: str, currency: str, owner: _auth.model.AbstractUser, balance=0.0) -> _Account:
@@ -21,7 +21,7 @@ def create_account(title: str, currency: str, owner: _auth.model.AbstractUser, b
     except _error.AccountNotExists:
         pass
 
-    acc = _odm.dispense('wallet_account')    # type: _Account
+    acc = _odm.dispense('wallet_account')  # type: _Account
 
     acc.f_set('title', title)
     acc.f_set('currency', currency)
@@ -44,7 +44,7 @@ def get_account(title: str = None, acc_id: str = None) -> _Account:
     else:
         raise ValueError('Either account ID or title should be specified.')
 
-    acc = f.first()
+    acc = f.first()  # type: _Account
     if not acc:
         raise _error.AccountNotExists("Account with '{}' is not exists.".format((title, acc_id)))
 
@@ -94,10 +94,6 @@ def commit_transactions_1():
         dst = t.destination
 
         try:
-            t.lock()
-            src.lock()
-            dst.lock()
-
             if src != dst:
                 # Decrease source account
                 if t not in src.pending_transactions:
@@ -112,9 +108,9 @@ def commit_transactions_1():
             t.f_set('state', 'pending')
 
         finally:
-            t.save().unlock()
-            src.save().unlock()
-            dst.save().unlock()
+            t.save()
+            src.save()
+            dst.save()
 
 
 def commit_transactions_2():
@@ -125,10 +121,6 @@ def commit_transactions_2():
         dst = t.destination
 
         try:
-            t.lock()
-            src.lock()
-            dst.lock()
-
             if src != dst:
                 src.f_sub('pending_transactions', t)
                 dst.f_sub('pending_transactions', t)
@@ -136,9 +128,9 @@ def commit_transactions_2():
             t.f_set('state', 'committed')
 
         finally:
-            t.save().unlock()
-            src.save().unlock()
-            dst.save().unlock()
+            t.save()
+            src.save()
+            dst.save()
 
 
 def cancel_transactions_1():
@@ -149,10 +141,6 @@ def cancel_transactions_1():
         dst = t.destination
 
         try:
-            t.lock()
-            src.lock()
-            dst.lock()
-
             if src != dst:
                 # Increase source account
                 if t not in src.cancelling_transactions:
@@ -167,9 +155,9 @@ def cancel_transactions_1():
             t.f_set('state', 'cancelling')
 
         finally:
-            t.save().unlock()
-            src.save().unlock()
-            dst.save().unlock()
+            t.save()
+            src.save()
+            dst.save()
 
 
 def cancel_transactions_2():
@@ -180,10 +168,6 @@ def cancel_transactions_2():
         dst = t.destination
 
         try:
-            t.lock()
-            src.lock()
-            dst.lock()
-
             if src != dst:
                 src.f_sub('cancelling_transactions', t)
                 dst.f_sub('cancelling_transactions', t)
@@ -191,6 +175,6 @@ def cancel_transactions_2():
             t.f_set('state', 'cancelled')
 
         finally:
-            t.save().unlock()
-            src.save().unlock()
-            dst.save().unlock()
+            t.save()
+            src.save()
+            dst.save()

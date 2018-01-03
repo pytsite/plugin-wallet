@@ -1,16 +1,17 @@
 """PytSite Wallet Endpoints
 """
-from pytsite import routing as _routing, router as _router, odm as _odm, admin as _admin
-from . import _forms, _model
-
 __author__ = 'Alexander Shepetko'
 __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
 
+from pytsite import routing as _routing, router as _router
+from plugins import odm as _odm, admin as _admin
+from . import _forms, _model
+
 
 class TransactionsCancel(_routing.Controller):
     def exec(self):
-        browse_url = _router.rule_url('pytsite.odm_ui@browse', {'model': 'wallet_transaction'})
+        browse_url = _router.rule_url('odm_ui@browse', {'model': 'wallet_transaction'})
 
         ids = self.arg('ids')
         if not ids:
@@ -40,6 +41,6 @@ class TransactionsCancelSubmit(_routing.Controller):
 
             entity.cancel()
 
-        redirect = self.arg('__redirect', _router.rule_url('pytsite.odm_ui@browse', {'model': 'wallet_transaction'}))
+        redirect = self.arg('__redirect', _router.rule_url('odm_ui@browse', {'model': 'wallet_transaction'}))
 
         return self.redirect(redirect)

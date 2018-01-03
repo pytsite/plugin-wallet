@@ -1,6 +1,6 @@
 {
   "name": "wallet",
-  "version": "0.3",
+  "version": "0.4",
   "description": {
     "en": "Wallet",
     "ru": "Wallet",
@@ -15,7 +15,17 @@
   "requires": {
     "packages": [],
     "plugins": [
-      "currency"
+      "auth",
+      "auth_ui",
+      "auth_storage_odm",
+      "assetman",
+      "currency",
+      "jquery_inputmask",
+      "odm",
+      "odm_auth",
+      "odm_ui",
+      "permissions",
+      "widget"
     ]
   }
 }

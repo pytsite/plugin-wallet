@@ -2,8 +2,8 @@
 """
 from decimal import Decimal as _Decimal
 from frozendict import frozendict as _frozendict
-from pytsite import widget as _w, odm as _odm, auth as _auth, html as _html
-from plugins import currency as _currency
+from pytsite import html as _html
+from plugins import widget as _w, auth as _auth, odm as _odm, currency as _currency
 
 __author__ = 'Alexander Shepetko'
 __email__ = 'a@shepetko.com'
@@ -18,12 +18,12 @@ class AccountSelect(_w.select.Select):
         u = _auth.get_current_user()
         items = []
 
-        if u.has_permission('pytsite.odm_auth.view.wallet_account') or \
-                u.has_permission('pytsite.odm_auth.view_own.wallet_account'):
+        if u.has_permission('odm_auth.view.wallet_account') or \
+                u.has_permission('odm_auth.view_own.wallet_account'):
             f = _odm.find('wallet_account').sort([('title', _odm.I_ASC)])
 
             # User can only view its own accounts
-            if not u.has_permission('pytsite.odm_auth.view.wallet_account'):
+            if not u.has_permission('odm_auth.view.wallet_account'):
                 f.eq('owner', u.uid)
 
             for acc in f.get():

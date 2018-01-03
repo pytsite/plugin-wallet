@@ -1,4 +1,4 @@
-define(['assetman', 'pytsite-widget-input-text', 'jquery-inputmask'], function (assetman) {
+define(['assetman', 'widget-input-text', 'jquery-inputmask'], function (assetman) {
     assetman.loadCSS('plugins.wallet@css/widget-input-money.css');
 
     return function (widget) {
