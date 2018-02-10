@@ -22,7 +22,7 @@ class TransactionsCancel(_routing.Controller):
 
         frm = _forms.TransactionsCancel(uid='odm-ui-d-form', model='wallet_transaction', eids=ids)
 
-        return _admin.render_form(frm)
+        return _admin.render(str(frm))
 
 
 class TransactionsCancelSubmit(_routing.Controller):
