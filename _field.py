@@ -37,6 +37,12 @@ class Money(_odm.field.Dict):
     def _on_set(self, value: dict, **kwargs):
         """Set value for the field.
         """
+        if value is None:
+            return {
+                'currency': _currency.get_main(),
+                'amount': 0.0,
+            }
+
         # Convert to mutable dict if necessary
         if isinstance(value, _frozendict):
             value = dict(value)
