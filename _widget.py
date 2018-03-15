@@ -50,7 +50,7 @@ class MoneyInput(_w.Abstract):
         self._css += ' widget-wallet-money-input'
         self._js_module = 'wallet-widget-input-money'
 
-    def set_val(self, value: dict, **kwargs):
+    def set_val(self, value: dict):
         """Set value of the widget.
         """
         # 'Empty' value
@@ -90,14 +90,6 @@ class MoneyInput(_w.Abstract):
         self._value = _frozendict(value)
 
         return self
-
-    def get_val(self, **kwargs) -> _frozendict:
-        """Get value of the widget.
-        """
-        if kwargs.get('mode') == 'validation':
-            return self._value['amount']
-
-        return self._value
 
     def _get_element(self, **kwargs) -> _html.Element:
         """Get HTML element of the widget.
