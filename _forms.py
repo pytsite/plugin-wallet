@@ -34,4 +34,4 @@ class TransactionsCancel(_odm_ui.forms.MassAction):
         super()._on_setup_widgets()
 
         # Change submit button color
-        self.get_widget('action-submit').color = 'danger'
+        self.get_widget('action_submit').color = 'danger'
