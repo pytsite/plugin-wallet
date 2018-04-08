@@ -79,6 +79,8 @@ class Account(_odm_ui.model.UIEntity):
 
         :param force: only for testing purposes.
         """
+        super()._pre_delete(**kwargs)
+
         if not kwargs.get('force'):
             f = _odm.find('wallet_transaction').or_eq('source', self).or_eq('destination', self)
             if f.count():
@@ -228,6 +230,8 @@ class Transaction(_odm_ui.model.UIEntity):
         """Hook.
         :param force: only for testing purposes.
         """
+        super()._pre_delete(**kwargs)
+
         if not kwargs.get('force'):
             raise _errors.ForbidDeletion('Wallet transactions cannot be deleted.')
 
