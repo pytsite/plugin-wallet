@@ -62,10 +62,10 @@ def plugin_load_uwsgi():
     # Admin sidebar entries
     admin.sidebar.add_section('wallet', 'wallet@wallet', 250)
     admin.sidebar.add_menu('wallet', 'accounts', 'wallet@accounts',
-                           router.rule_path('odm_ui@browse', {'model': 'wallet_account'}),
+                           router.rule_path('odm_ui@admin_browse', {'model': 'wallet_account'}),
                            'fa fa-credit-card', weight=10, permissions='odm_auth@view.wallet_account')
     admin.sidebar.add_menu('wallet', 'transactions', 'wallet@transactions',
-                           router.rule_path('odm_ui@browse', {'model': 'wallet_transaction'}),
+                           router.rule_path('odm_ui@admin_browse', {'model': 'wallet_transaction'}),
                            'fa fa-exchange', weight=20, permissions='odm_auth@view.wallet_transaction')
 
     # Cron events

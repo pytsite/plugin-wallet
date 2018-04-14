@@ -11,7 +11,7 @@ from . import _forms, _model
 
 class TransactionsCancel(_routing.Controller):
     def exec(self):
-        browse_url = _router.rule_url('odm_ui@browse', {'model': 'wallet_transaction'})
+        browse_url = _router.rule_url('odm_ui@admin_browse', {'model': 'wallet_transaction'})
 
         ids = self.arg('ids')
         if not ids:
@@ -41,6 +41,6 @@ class TransactionsCancelSubmit(_routing.Controller):
 
             entity.cancel()
 
-        redirect = self.arg('__redirect', _router.rule_url('odm_ui@browse', {'model': 'wallet_transaction'}))
+        redirect = self.arg('__redirect', _router.rule_url('odm_ui@admin_browse', {'model': 'wallet_transaction'}))
 
         return self.redirect(redirect)
