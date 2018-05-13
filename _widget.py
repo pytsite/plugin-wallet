@@ -48,7 +48,7 @@ class MoneyInput(_w.Abstract):
 
         self._currency_select = kwargs.get('currency_select', False)
         self._css += ' widget-wallet-money-input'
-        self._js_module = 'wallet-widget-input-money'
+        self._js_modules.append('wallet-widget-input-money')
 
     def set_val(self, value: dict):
         """Set value of the widget.
