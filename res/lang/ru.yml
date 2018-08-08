@@ -32,8 +32,6 @@ odm_ui_form_title_modify_wallet_account: 'Изменение счёта'
 odm_ui_form_title_delete_wallet_account: 'Удаление счетов'
 
 odm_auth_create_wallet_account: 'Создание счетов'
-odm_auth_view_wallet_account: 'Просмотр ВСЕХ счетов'
-odm_auth_view_own_wallet_account: 'Просмотр СВОИХ счетов'
 odm_auth_modify_wallet_account: 'Изменение ЛЮБЫХ счетов'
 odm_auth_modify_own_wallet_account: 'Изменение СВОИХ счетов'
 odm_auth_delete_wallet_account: 'Удаление ЛЮБЫХ счетов'
@@ -45,7 +43,6 @@ odm_ui_form_title_modify_wallet_transaction: 'Изменение транзак�
 odm_ui_form_title_cancel_wallet_transaction: 'Отмена транзакций'
 
 odm_auth_create_wallet_transaction: 'Создание транзакций'
-odm_auth_view_wallet_transaction: 'Просмотр транзакций'
 odm_auth_modify_wallet_transaction: 'Изменение транзакций'
 odm_auth_cancel_wallet_transaction: 'Отмена транзакций'
 

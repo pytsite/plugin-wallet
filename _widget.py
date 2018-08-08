@@ -18,17 +18,15 @@ class AccountSelect(_w.select.Select):
         u = _auth.get_current_user()
         items = []
 
-        if u.has_permission('odm_auth@view.wallet_account') or \
-                u.has_permission('odm_auth@view_own.wallet_account'):
-            f = _odm.find('wallet_account').sort([('title', _odm.I_ASC)])
+        f = _odm.find('wallet_account').sort([('title', _odm.I_ASC)])
 
-            # User can only view its own accounts
-            if not u.has_permission('odm_auth@view.wallet_account'):
-                f.eq('owner', u.uid)
+        # Ordinary user can only view its own accounts
+        if not u.is_admin:
+            f.eq('owner', u.uid)
 
-            for acc in f.get():
-                label = '{} ({})'.format(acc.title, acc.currency)
-                items.append(('wallet_account:' + str(acc.id), label))
+        for acc in f.get():
+            label = '{} ({})'.format(acc.title, acc.currency)
+            items.append(('wallet_account:' + str(acc.id), label))
 
         super().__init__(uid, items=items, **kwargs)
 
