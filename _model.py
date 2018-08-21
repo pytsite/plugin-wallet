@@ -143,7 +143,7 @@ class Account(_odm_ui.model.UIEntity):
                 uid='currency',
                 weight=20,
                 label=self.t('currency'),
-                title=self.currency,
+                text=self.currency,
                 value=self.currency,
             ))
 
