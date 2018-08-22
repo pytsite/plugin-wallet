@@ -106,7 +106,7 @@ class Account(_odm_ui.model.UIEntity):
         balance = _currency.fmt(self.currency, self.balance)
         owner = self.owner if self.owner else _auth.get_admin_user()
 
-        return str(self.id), self.title, self.currency, balance, owner.full_name
+        return str(self.id), self.title, self.currency, balance, owner.first_last_name
 
     def odm_ui_mass_action_entity_description(self) -> str:
         return '{} ({}, {})'.format(self.title, str(self.id), self.currency)
